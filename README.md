@@ -36,6 +36,21 @@ cp jsin/index.js /usr/local/bin/jsin # jsin/index.js is the file you could now u
 rm -rf jsin
 ```
 
+## Or compiling the NodeJS based command line tool into a binary command line tool...
+with a packaged NodeJS interpreter.
+
+```
+alias -g removeFirstLine='tail -n +2'
+
+npm i -g @vercel/ncc pkg
+ncc build dist/jsin.js -o jsin
+cp jsin/index.js ./jsin-with-hashbang.js 
+rm -rf jsin
+cat jsin-with-hashbang.js  | removeFirstLine > jsin.js
+pkg --target macos-x64 jsin.js
+```
+
+
 
 
 
