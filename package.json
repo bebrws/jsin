@@ -1,13 +1,14 @@
 {
   "name": "jsin",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "",
   "main": "index.js",
   "scripts": {
     "build": "tsc",
     "start": "tsc && node dist/jsin.js",
     "test": "echo 'hey\nthere' | ts-node src/jsin.ts --eval \"l.replace(/e/g, 'a')\"",
-    "testjson": "echo '{\"hey\": \"there\"}' | ts-node src/jsin.ts --json --eval \"l.hey.replace(/e/g, 'a')\""
+    "testjson": "echo '{\"hey\": \"there\"}' | ts-node src/jsin.ts --json --eval \"l.hey.replace(/e/g, 'a')\"",
+    "testmatch": "echo '## Section 1\n### Sub Section 1\n### Sub Section 2\n## Section 2\n### Sub Section 1-2' | jsin --match \"l.match(/#/)\" \"l.replace('###', '    - ').replace('##', '- ')\""
   },
   "bin": {
     "jsin": "dist/jsin.js"
@@ -23,5 +24,8 @@
   "dependencies": {
     "@types/yargs": "^15.0.5",
     "yargs": "^16.0.3"
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/@bebrws"
   }
 }
