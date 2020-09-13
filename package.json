@@ -1,0 +1,27 @@
+{
+  "name": "jsin",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "tsc",
+    "start": "tsc && node dist/jsin.js",
+    "test": "echo 'hey\nthere' | ts-node src/jsin.ts --eval \"l.replace(/e/g, 'a')\"",
+    "testjson": "echo '{\"hey\": \"there\"}' | ts-node src/jsin.ts --json --eval \"l.hey.replace(/e/g, 'a')\""
+  },
+  "bin": {
+    "jsin": "dist/jsin.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/node": "^14.10.1",
+    "ts-node": "^9.0.0",
+    "tslint": "^6.1.3",
+    "typescript": "^4.0.2"
+  },
+  "dependencies": {
+    "@types/yargs": "^15.0.5",
+    "yargs": "^16.0.3"
+  }
+}
