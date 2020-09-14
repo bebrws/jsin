@@ -24,6 +24,28 @@ lots of text
 
 ```
 
+Or one that I have been using recently on a regular basis:
+
+```
+
+function alaOpacity() {
+    cat ~/.config/alacritty/alacritty.yml | jsin --yaml --yamlout --whole "function r(l, o) { l.background_opacity=Number(o); return l; }  r(l, \"$1\"); " >  ~/.config/alacritty/alacritty.new
+    mv ~/.config/alacritty/alacritty.new ~/.config/alacritty/alacritty.yml
+}
+
+```
+
+then:
+
+```
+alaOpacity 0.7
+```
+
+This shows it's ability to parse yaml as well.
+
+It can also parse and print JSON of course and handle plists.
+
+
 
 ## Compiling down into a single file which could be transported to different machines
 Use ncc:
@@ -35,6 +57,7 @@ chmod +x jsin/index.js
 cp jsin/index.js /usr/local/bin/jsin # jsin/index.js is the file you could now use on any machine without deps other than node
 rm -rf jsin
 ```
+
 
 ## Or compiling the NodeJS based command line tool into a binary command line tool...
 with a packaged NodeJS interpreter.

@@ -13,8 +13,8 @@
   "bin": {
     "jsin": "dist/jsin.js"
   },
-  "author": "",
-  "license": "ISC",
+  "author": "Brad Barrows",
+  "license": "MIT",
   "devDependencies": {
     "@types/chalk": "^2.2.0",
     "@types/js-yaml": "^3.12.5",
@@ -35,5 +35,6 @@
   },
   "publishConfig": {
     "registry": "https://npm.pkg.github.com/@bebrws"
-  }
+  },
+  "homepage": "https://bradbarrows.com"
 }
