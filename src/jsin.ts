@@ -15,6 +15,8 @@ let allLines: string[] = [];
 const argv = yargs.options({
     whole: { type: 'boolean', default: false },
     json: { type: 'boolean', default: false },
+    plist: { type: 'boolean', default: false },
+    plistout: { type: 'boolean', default: false },
     yaml: { type: 'boolean', default: false },
     match: { type: 'string', default: '' }
   }).argv;
@@ -52,7 +54,7 @@ if (argv._.length != 1) {
 
 rl.on('line', (rll: string): void => {
     if (!argv.whole) {
-      const l: string | object | jsyaml.LoadOptions = (argv.json ? JSON.parse(rll) : (argv.yaml ? jsyaml.load(rll) : rll));
+      const l: string | object | jsyaml.LoadOptions = (argv.json ? JSON.parse(rll) : (argv.yaml ? jsyaml.load(rll) : (argv.plist ? plist.parse(rll) : rll)));
       const out = argv.match.length ? (eval(argv.match) ? eval(argv._[0]) : "") : eval(argv._[0]);
       if (typeof out !== "string" || (typeof out === "string" && out.length))  {
         argv.yamlout ? console.log(`${jsyaml.dump(out)}`) : console.log(`${out}`);
@@ -64,6 +66,6 @@ rl.on('line', (rll: string): void => {
 
 rl.on('close', () => {
   const allLinesTogether = allLines.join("\n");
-  const l: string | object | jsyaml.LoadOptions = (argv.json ? JSON.parse(allLinesTogether) : (argv.yaml ? jsyaml.load(allLinesTogether) : allLinesTogether));
-  argv.yamlout ? console.log(jsyaml.dump(eval(argv._[0]))) : console.log(eval(argv._[0]));
+  const l: string | object | jsyaml.LoadOptions = (argv.json ? JSON.parse(allLinesTogether) : (argv.yaml ? jsyaml.load(allLinesTogether) : (argv.plist ? plist.parse(allLinesTogether) : allLinesTogether)));
+  argv.yamlout ? console.log(jsyaml.dump(eval(argv._[0]))) : (argv.plistout ? console.log(plist.build(eval(argv._[0]))) : console.log(eval(argv._[0])));
 });
