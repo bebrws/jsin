@@ -51,6 +51,15 @@ rm jsin-with-hashbang.js jsin.js
 ```
 
 
+Here is an example bash function that will change your Alacritty opacity:
+```
+function alaOpacity() {
+    cat ~/.config/alacritty/alacritty.yml | jsin --yaml --yamlout --whole "function r(l, o) { l.background_opacity=Number(o); return l; }  r(l, \"$1\"); " >  ~/.config/alacritty/alacritty.new
+    mv ~/.config/alacritty/alacritty.new ~/.config/alacritty/alacritty.yml
+}
+alaOpacity 0.3
+```
+
 
 
 
